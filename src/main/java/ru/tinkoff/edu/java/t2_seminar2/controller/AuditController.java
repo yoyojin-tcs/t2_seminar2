@@ -12,7 +12,7 @@ import java.util.List;
 public class AuditController {
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN'")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<String> getLogs(){
         return List.of("First access log record", "Second access log record");
     }

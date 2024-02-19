@@ -4,26 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f249e618-ec97-4386-aca0-1c1f9faa443a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/AppStarter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/configurations/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/controller/AuditController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/dto/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/dto/UserList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/service/security/UserCredentials.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/service/security/UserCredentialsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/tinkoff/edu/java/t2_seminar2/controller/AuditControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/tinkoff/edu/java/t2_seminar2/controller/UserControllerTest.java" afterDir="false" />
+    <list default="true" id="f249e618-ec97-4386-aca0-1c1f9faa443a" name="Changes" comment="Seminar code">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/tinkoff/edu/java/t2_seminar2/controller/AuditControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/tinkoff/edu/java/t2_seminar2/controller/AuditControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +24,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -54,6 +43,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.AppStarter.executor": "Run",
+    "JUnit.AuditControllerTest.whenUserAccessUserAuditSecuredEndpoint_thenForbidden.executor": "Run",
     "JUnit.UserControllerTest.executor": "Debug",
     "JUnit.UserControllerTest.whenAnonymusAccessUserSecuredEndpoint_thenOk.executor": "Run",
     "JUnit.UserControllerTest.whenUserAccessUserAuditSecuredEndpoint_thenForbidden.executor": "Debug",
@@ -78,6 +68,7 @@
       <recent name="ru.tinkoff.edu.java.t2_seminar2.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.tinkoff.edu.java.t2_seminar2.controller" />
       <recent name="ru.tinkoff.edu.java.t2_seminar2.security" />
       <recent name="ru.tinkoff.edu.java.t2_seminar2.service.security" />
     </key>
@@ -165,10 +156,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.AuditControllerTest.whenUserAccessUserAuditSecuredEndpoint_thenForbidden" />
-        <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="JUnit.UserControllerTest.whenUserAccessUserAuditSecuredEndpoint_thenForbidden" />
         <item itemvalue="JUnit.UserControllerTest.whenUserAccessUserSecuredEndpoint_thenOk" />
         <item itemvalue="JUnit.UserControllerTest.whenAnonymusAccessUserSecuredEndpoint_thenOk" />
+        <item itemvalue="JUnit.UserControllerTest" />
+        <item itemvalue="JUnit.UserControllerTest.whenUserAccessUserAuditSecuredEndpoint_thenForbidden" />
       </list>
     </recent_temporary>
   </component>
@@ -181,20 +172,33 @@
       <option name="presentableId" value="Default" />
       <updated>1707927115125</updated>
     </task>
+    <task id="LOCAL-00001" summary="Seminar code">
+      <option name="closed" value="true" />
+      <created>1708348878002</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708348878002</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Seminar code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Seminar code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ru/tinkoff/edu/java/t2_seminar2/controller/UserControllerTest.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/tinkoff/edu/java/t2_seminar2/service/security/UserCredentialsService.java</url>
           <line>30</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/tinkoff/edu/java/t2_seminar2/controller/AuditControllerTest.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

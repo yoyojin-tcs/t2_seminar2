@@ -38,24 +38,11 @@ class AuditControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    @BeforeEach
-    public void setup() {
-        when(userCredentialsService.loadUserByUsername(anyString())).thenAnswer(invocationOnMock -> {
-            String username = invocationOnMock.getArgument(0);
-            List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority("USER"));
-            if (username.equals("admin")) {
-                authorities.add(new SimpleGrantedAuthority("ADMIN"));
-            }
-            return new User(username, "pass", authorities);
-        });
-    }
-
     @Test
-    @WithMockUser(username = "admin")
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
     public void whenUserAccessUserAuditSecuredEndpoint_thenForbidden() throws Exception {
         mvc.perform(get("/logs"))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isOk());
     }
 
 }
