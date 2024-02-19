@@ -1,0 +1,193 @@
+openapi: 3.0.3
+info:
+  title: term2-spring-inside
+  description: Сервис, разрабатываемый в рамках семинаров по Java
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: "a.o.korotkov@tinkoff.ru"
+
+servers:
+  - url: https://localhost:9999
+    description: Локальный сервер
+
+tags:
+  - name: term2-spring-inside-user
+    description: Управление пользователем
+  - name: term2-spring-inside-audit
+    description: Аудит операций
+
+paths:
+  /api/v1.0/users:
+    get:
+      operationId: getUsers
+      tags:
+        - term2-spring-inside-user
+      description: Получение всех пользователей
+      security:
+        - basic: ["user"]
+      responses:
+        '200':
+          $ref: '#/components/responses/userArray'
+        '400':
+          $ref: '#/components/responses/requestErrorResponse'
+        '401':
+          $ref: '#/components/responses/unauthorizedErrorResponse'
+        '403':
+          $ref: '#/components/responses/forbiddenErrorResponse'
+        '404':
+          $ref: '#/components/responses/notFoundErrorResponse'
+        '426':
+          $ref: '#/components/responses/failedDependencyErrorResponse'
+        '500':
+          $ref: '#/components/responses/internalErrorResponse'
+
+components:
+  securitySchemes:
+    basicAuth: # <-- arbitrary name for the security scheme
+      type: http
+      scheme: basic
+
+  schemas:
+    userArray:
+      description: Список пользователей
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: user
+    user:
+      description: Информация о пользователе
+      type: object
+      properties:
+        uuid:
+          description: Уникальный идентификатор пользователя
+          type: string
+        lName:
+          description: Фамилия пользователя
+          type: string
+        fName:
+          description: Имя пользователя
+          type: string
+    error:
+      type: object
+      required:
+        - id
+        - code
+        - success
+      properties:
+        id:
+          type: string
+          description: Уникальный UUID для логов и отладки
+        code:
+          type: string
+          description: Код ошибки текстом
+        success:
+          type: boolean
+          description: результат выполнения операции
+
+
+  responses:
+    userArray:
+      description: Успешный ответ со списком пользователей
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/userArray'
+    internalErrorResponse:
+      description: Internal error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+          examples:
+            code500:
+              $ref: '#/components/examples/error500Example'
+    unauthorizedErrorResponse:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+          examples:
+            code401:
+              $ref: '#/components/examples/error401Example'
+    forbiddenErrorResponse:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+          examples:
+            code403:
+              $ref: '#/components/examples/error403Example'
+    requestErrorResponse:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+          examples:
+            code400:
+              $ref: '#/components/examples/error400Example'
+    notFoundErrorResponse:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+          examples:
+            code404:
+              $ref: '#/components/examples/error404Example'
+  examples:
+    error400Example:
+      summary: Bad Request
+      description: Ошибка в теле запроса
+      value:
+        id: 'ab5a11cd-13cc-4e33-af8b-75a74e18dd09'
+        code: 'invalid_request'
+        success: false
+        errorCode: ''
+        message: 'Invalid parameter value'
+        description: ''
+    error401Example:
+      summary: Unauthorized
+      description: Unauthorized
+      value:
+        id: 'ab5a11cd-13cc-4e33-af8b-75a74e18dd09'
+        code: 'unauthorized'
+        success: false
+        errorCode: ''
+        message: 'Unauthorized Error'
+        description: 'Доступ неавторизованным пользователям запрещён'
+    error403Example:
+      summary: Forbidden
+      description: Недостаточно прав
+      value:
+        id: 'ab5a11cd-13cc-4e33-af8b-75a74e18dd09'
+        code: 'forbidden'
+        success: false
+        errorCode: ''
+        message: 'Access denied'
+        description: 'Доступ к ресурсу запрещён'
+    error500Example:
+      summary: Internal Error
+      description: Ошибка запроса данных с сервера
+      value:
+        id: '4d8d97d2-d4ee-11eb-b8bc-0242ac130003'
+        code: 'internal_error'
+        success: false
+        errorCode: ''
+        message: 'Unknown error'
+        description: 'Неизвестная ошибка'
+    error404Example:
+      summary: Not Found
+      description: Не найдено
+      value:
+        id: 'ab5a11cd-13cc-4e33-af8b-75a74e18dd09'
+        code: 'not_found'
+        success: false
+        errorCode: ''
+        message: 'User not found'
+        description: 'Пользователь не найден'
