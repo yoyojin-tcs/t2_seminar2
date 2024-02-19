@@ -29,12 +29,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
+        httpSecurity.cors().and().csrf().disable()
                 .authorizeHttpRequests()
                 //.requestMatchers("/logs").hasRole("ADMIN")
-                .requestMatchers("/api/1.0/users").hasRole("USER")
-                .anyRequest()
-                .authenticated()
+                .requestMatchers("/api/**").hasRole("USER")
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/swagger.yml").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic(Customizer.withDefaults());
         return httpSecurity.build();

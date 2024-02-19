@@ -12,7 +12,7 @@ import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.tinkoff.edu.java.t2_seminar2.configurations.security.SecurityConfig;
-import ru.tinkoff.edu.java.t2_seminar2.dto.UserList;
+import ru.tinkoff.edu.java.t2_seminar2.model.UserList;
 import ru.tinkoff.edu.java.t2_seminar2.service.UserService;
 import ru.tinkoff.edu.java.t2_seminar2.service.security.UserCredentialsService;
 
@@ -54,7 +54,7 @@ class UserControllerTest {
     @WithAnonymousUser
     public void whenAnonymusAccessUserSecuredEndpoint_thenOk() throws Exception {
 
-        when(userService.getAllUsers()).thenReturn(new UserList(Collections.emptyList()));
+        when(userService.getAllUsers()).thenReturn(new UserList().users(Collections.emptyList()));
         mvc.perform(get("/api/1.0/users"))
                 .andExpect(status().isUnauthorized());
     }
@@ -62,7 +62,7 @@ class UserControllerTest {
     @Test
     @WithMockUser(username = "user")
     public void whenUserAccessUserSecuredEndpoint_thenOk() throws Exception {
-        when(userService.getAllUsers()).thenReturn(new UserList(Collections.emptyList()));
+        when(userService.getAllUsers()).thenReturn(new UserList().users(Collections.emptyList()));
         mvc.perform(get("/api/1.0/users"))
                 .andExpect(status().isOk());
     }

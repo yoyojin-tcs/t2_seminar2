@@ -2,13 +2,13 @@ openapi: 3.0.3
 info:
   title: term2-spring-inside
   description: Сервис, разрабатываемый в рамках семинаров по Java
-  version: 1.0.0
+  version: 1.0
   contact:
     name: API Support
     email: "a.o.korotkov@tinkoff.ru"
 
 servers:
-  - url: https://localhost:9999
+  - url: http://localhost:9999
     description: Локальный сервер
 
 tags:
@@ -18,17 +18,17 @@ tags:
     description: Аудит операций
 
 paths:
-  /api/v1.0/users:
+  /api/1.0/users:
     get:
       operationId: getUsers
       tags:
         - term2-spring-inside-user
       description: Получение всех пользователей
       security:
-        - basic: ["user"]
+        - basic: ["USER"]
       responses:
         '200':
-          $ref: '#/components/responses/userArray'
+          $ref: '#/components/responses/userList'
         '400':
           $ref: '#/components/responses/requestErrorResponse'
         '401':
@@ -37,8 +37,6 @@ paths:
           $ref: '#/components/responses/forbiddenErrorResponse'
         '404':
           $ref: '#/components/responses/notFoundErrorResponse'
-        '426':
-          $ref: '#/components/responses/failedDependencyErrorResponse'
         '500':
           $ref: '#/components/responses/internalErrorResponse'
 
@@ -49,14 +47,14 @@ components:
       scheme: basic
 
   schemas:
-    userArray:
+    userList:
       description: Список пользователей
       type: object
       properties:
         users:
           type: array
           items:
-            type: user
+            $ref: '#/components/schemas/user'
     user:
       description: Информация о пользователе
       type: object
@@ -89,12 +87,12 @@ components:
 
 
   responses:
-    userArray:
+    userList:
       description: Успешный ответ со списком пользователей
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/userArray'
+            $ref: '#/components/schemas/userList'
     internalErrorResponse:
       description: Internal error
       content:

@@ -4,3 +4,13 @@ server:
 spring:
   application:
     name: term2-spring-inside
+  profiles:
+    active: dev
+
+springdoc:
+  api-docs:
+    path: /swagger-ui
+  swagger-ui:
+    url: /swagger.yml
+    path: /swagger-ui
+
