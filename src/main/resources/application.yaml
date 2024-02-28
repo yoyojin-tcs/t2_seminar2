@@ -6,6 +6,12 @@ spring:
     name: term2-spring-inside
   profiles:
     active: dev
+  datasource:
+    postgres:
+      url: jdbc:postgresql://localhost:5432/edu-postgres
+      username: password
+      password: password
+      driver-class-name: org.postgresql.Driver
 
 springdoc:
   api-docs:
